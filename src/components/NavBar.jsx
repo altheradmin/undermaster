@@ -183,7 +183,7 @@ const Container = styled.div`
       height: 2rem;
       position: absolute;
       left: 20px;
-      top: 35px;
+      top: 32px;
     }
 
 
