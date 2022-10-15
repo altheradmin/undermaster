@@ -201,8 +201,35 @@ const Container = styled.div`
 
   @media (max-width: 590px){ 
  
+    .hero {
+      position: relative;
+      .background-image {
+       
+        filter: brightness(60%);
+      }
+      img {
+        background-size: cover;
+        height: 90vw;
+        width: 120vw;
+      }
+      .containerLogo{
+        width: 68%;
+        height: 86%;
+        top -100px;
+        position: absolute;
+      }
+      .container {
+        position: absolute;
+        bottom: 5rem;
+        .fix01{
+          margin-top: 100px;
+        }
    
-    
+     
+        }
+      }
+    }
+  
     .info {
       top: 160px;
       left: -60px;
