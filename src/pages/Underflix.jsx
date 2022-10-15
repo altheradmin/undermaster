@@ -78,7 +78,7 @@ const Container = styled.div`
       filter: brightness(60%);
     }
     img {
-      height: 100vh;
+      height: autovh;
       width: 100vw;
     }
     .containerLogo{
