@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
+import { MagicSquare } from '../styles/refcomp';
 
 export default function Underflix() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,6 +41,7 @@ window.onscroll =() => {
 console.log(movies);
   return (
     <Container>
+   
       <NavBar isScrolled={isScrolled}/>
       <div className="hero">
         <img 
@@ -51,14 +53,14 @@ console.log(movies);
    
             <img className="containerLogo" src={MovieLogo} alt="Movie Logo"/>
           
-          <div className="buttons flex">
+          <div className="buttons flex " >
             
-            <button className="flex j-center a-center" >
+            <button className="button2 flex j-center a-center play" >
               <FaPlay /> Play
               
             </button>
-            <button className="flex j-center a-center">
-              <AiOutlineInfoCircle /> + Info
+            <button className="button2 flex j-center a-center info">
+              <AiOutlineInfoCircle /> Info
             </button>
             
           </div>
@@ -78,7 +80,7 @@ const Container = styled.div`
       filter: brightness(60%);
     }
     img {
-      height: autovh;
+      height: auto;
       width: 100vw;
     }
     .containerLogo{
@@ -106,7 +108,7 @@ const Container = styled.div`
       .buttons {
        position: absolute;
         margin: 5rem;
-        top: -200px;
+        top: -14rem;
         gap: 2rem;
         button {
           font-size: 1.4rem;
@@ -132,4 +134,72 @@ const Container = styled.div`
       }
     }
   }
+
+  @media (max-width: 1115px){ 
+    .info {
+      left: 170px;
+      height: 50px;
+      line-height: 1px;
+    }
+    .button2 {
+ 
+
+      position: absolute;
+         top: 100px;
+         padding-right: 2.4rem;
+         border: none;
+         cursor: pointer;
+         transition: 0.2s ease-in-out;
+         &:hover {
+           opacity: 0.8;
+         }
+         &:nth-of-type(2) {
+           background-color: rgba(109, 109, 110, 0.7);
+           color: white;
+           svg {
+             font-size: 1.8rem;
+           }
+         }
+       }
+
+
+  }
+  @media (max-width: 788px){ 
+    .buttons {
+      background-color: red;
+      position: absolute;
+       margin: 5rem;
+
+  
+  }
+.info {
+  left: 170px;
+  height: 50px;
+  line-height: 1px;
+}
+
+  button {
+ 
+
+ position: absolute;
+    top: 100px;
+    padding-right: 2.4rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      opacity: 0.8;
+    }
+    &:nth-of-type(2) {
+      background-color: rgba(109, 109, 110, 0.7);
+      color: white;
+      svg {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
+
+
+
 `;
