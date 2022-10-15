@@ -47,11 +47,11 @@ console.log(movies);
         <img 
         src={BackgroundImage} 
         alt="Background"
-        className="background-image"
+        className="background-image background-image2"
         />
         <div className="container">
    
-            <img className="containerLogo" src={MovieLogo} alt="Movie Logo"/>
+            <img className="containerLogo fx1" src={MovieLogo} alt="Movie Logo"/>
           
           <div className="buttons flex " >
             
@@ -73,6 +73,23 @@ console.log(movies);
   )
 }
 const Container = styled.div`
+
+
+.containerLogo{
+     
+  top: -400px;
+  left: 50px;
+
+
+   position: absolute;
+ }
+
+
+
+
+
+
+
   background-color: black;
   .hero {
     position: relative;
@@ -82,14 +99,7 @@ const Container = styled.div`
       filter: brightness(40%);
     }
    
-    .containerLogo{
-     
-     top: -400px;
-     left: 50px;
-     widht: 30px;
- 
-      position: absolute;
-    }
+  
     .container {
       position: absolute;
       bottom: 5rem;
@@ -129,9 +139,21 @@ const Container = styled.div`
   }
 
   @media (max-width: 1115px){ 
+
+    .containerLogo{
+     
+      top: -200px;
+      left: 50px;
+    
+  
+       position: absolute;
+     }
+
+
+
     .info {
       left: 120px;
-      height: 30px;
+      height: 40px;
       width: 60px;
       width: 140px;
       line-height: 1px;
@@ -139,7 +161,7 @@ const Container = styled.div`
       
     }
     .play {
-      height: 30px;
+      height: 40px;
       width: 140px;
       font-size: 10px;
       left: -35px;
@@ -168,7 +190,15 @@ const Container = styled.div`
 
   }
   @media (max-width: 788px){ 
-   
+
+    .containerLogo{
+     width: 400px;
+      top: -140px;
+      left: 50px;
+      
+  
+       position: absolute;
+     }
 
   button {
  
@@ -192,24 +222,29 @@ const Container = styled.div`
   }
 
   @media (max-width: 590px){ 
- 
+  
+
+    .containerLogo{
+      width: 400px;
+       top: -280px;
+       left: 50px;
+       
+   
+        position: absolute;
+      }
+
+
+
+
     .hero {
       position: relative;
       .background-image {
-       
-        filter: brightness(60%);
+        height: 110vw;
+      width: 170vw;
+        filter: brightness(40%);
       }
-      img {
-        background-size: cover;
-        height: 90vw;
-        width: 120vw;
-      }
-      .containerLogo{
-        width: 68%;
-        height: 86%;
-        top -100px;
-        position: absolute;
-      }
+   
+    
       .container {
         position: absolute;
         bottom: 5rem;
@@ -223,9 +258,9 @@ const Container = styled.div`
     }
   
     .info {
-      top: 160px;
+      top: 140px;
       left: -60px;
-      height: 30px;
+      height: 40px;
       width: 60px;
       width: 140px;
       line-height: 1px;
@@ -233,11 +268,11 @@ const Container = styled.div`
      
     }
     .play {
-display: none;
-      height: 30px;
+      top: 140px;
+      height: 40px;
       width: 140px;
       font-size: 10px;
-      left: -35px;
+      left: 85px;
     
    
     }
