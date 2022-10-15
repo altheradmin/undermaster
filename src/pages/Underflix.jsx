@@ -55,11 +55,11 @@ console.log(movies);
           
           <div className="buttons flex " >
             
-            <button className="button2 flex j-center a-center play" >
+            <button className="button2 flex j-center a-center play sumir" >
               <FaPlay /> Play
               
             </button>
-            <button className="button2 flex j-center a-center info">
+            <button className="button2 flex j-center a-center info sumir">
               <AiOutlineInfoCircle /> Info
             </button>
             
@@ -176,13 +176,7 @@ const Container = styled.div`
 
   }
   @media (max-width: 788px){ 
-    .buttons {
-      background-color: red;
-      position: absolute;
-       margin: 5rem;
-
-  
-  }
+   
 
   button {
  
@@ -205,7 +199,34 @@ const Container = styled.div`
     }
   }
 
+  @media (max-width: 590px){ 
+ 
+   
+    
+    .info {
+      top: 160px;
+      left: -60px;
+      height: 30px;
+      width: 60px;
+      width: 140px;
+      line-height: 1px;
 
+     
+    }
+    .play {
+display: none;
+      height: 30px;
+      width: 140px;
+      font-size: 10px;
+      left: -35px;
+    
+   
+    }
+  
+
+
+    
+  }
 
 
 `;
