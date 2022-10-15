@@ -179,33 +179,32 @@ const Container = styled.div`
 
     .rsImg {
       height: 2rem;
-      position: absolute;
-      left: 20px;
     }
 
 
     .links {
-      margin-top:20px;
-      font-size: 14px;
+    
+      display: none;
     }
-  }
 
-  @media (max-width: 680px){
-
+    .menuMobile {
+      position: absolute;
+      right: 40px;
+      top: 15px;
+      display: inline;
+    }
     .right {
       display: none;
     }
 
 
-    .links {
-      display: none;
-    }
-    .menuMobile {
-      position: absolute;
-      top: 13;
-      right: 40px;
-      display: inline;
-    }
+  }
+
+  @media (max-width: 680px){
+
+
+
+
 
  
 
