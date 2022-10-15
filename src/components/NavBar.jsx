@@ -179,6 +179,9 @@ const Container = styled.div`
 
     .rsImg {
       height: 2rem;
+      position: absolute;
+      left: 20px;
+      top: 35px;
     }
 
 
@@ -190,7 +193,7 @@ const Container = styled.div`
     .menuMobile {
       position: absolute;
       right: 40px;
-      top: 14.5px;
+      top: 15px;
       display: inline;
     }
     .right {
@@ -200,7 +203,16 @@ const Container = styled.div`
 
   }
 
+  @media (max-width: 680px){
 
+
+
+
+
+ 
+
+
+  }
 
 
 
