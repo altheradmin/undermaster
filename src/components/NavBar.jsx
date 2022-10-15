@@ -176,7 +176,9 @@ const Container = styled.div`
 
   @media (max-width: 788px){
 
-
+    nav {
+      height: 4rem;
+    }
     .rsImg {
       height: 2rem;
       position: absolute;
