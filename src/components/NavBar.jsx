@@ -5,6 +5,7 @@ import logo from '../assets/logo.png'
 import { FaPowerOff, FaSearch } from "react-icons/fa"
 import { signOut , onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../utils/firebase-config';
+import { BiMenu } from 'react-icons/bi';
 
 export default function NavBar({ isScrolled }) {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function NavBar({ isScrolled }) {
         if (!currentUser) navigate("/login");
         });
         
-
+    const [showMobile, setShowMobile] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [inputHover, setInputHover] = useState(false);
 
@@ -32,7 +33,7 @@ export default function NavBar({ isScrolled }) {
         <nav className={`flex ${isScrolled ? "scrolled" : ""}`}>
             <div className="left flex a-center">
                 <div className="brand flex a-center j-center">
-                    <img src={logo} alt="logo" />
+                    <img className="rsImg" src={logo} alt="logo" />
                 </div>
                 <ul className="links flex">
                     {
@@ -43,6 +44,7 @@ export default function NavBar({ isScrolled }) {
                         })
                     }
                 </ul>
+                <div className="menuMobile"><BiMenu/></div>
             </div>
             <div className="right flex a-center">
                 <div className={`search ${showSearch ? "show-search" : ""}`}>
@@ -78,6 +80,14 @@ const Container = styled.div`
   .scrolled {
     background-color: black;
   }
+  .menuMobile {
+    display: none;
+    color: rgb(300, 100, 100);
+    font-size: 37px;
+  }
+  .rsImg {
+    height: 3rem;
+  }
   nav {
     position: sticky;
     top: 0;
@@ -93,9 +103,7 @@ const Container = styled.div`
     .left {
       gap: 2rem;
       .brand {
-        img {
-          height: 3rem;
-        }
+        
       }
       .links {
         list-style-type: none;
@@ -165,4 +173,47 @@ const Container = styled.div`
       }
     }
   }
+
+  @media (max-width: 788px){
+
+
+    .rsImg {
+      height: 2rem;
+    }
+
+
+    .links {
+      margin-top:20px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 680px){
+
+    .right {
+      display: none;
+    }
+
+
+    .links {
+      display: none;
+    }
+    .menuMobile {
+      position: absolute;
+      right: 40px;
+      display: inline;
+    }
+
+ 
+
+
+  }
+
+
+
+
+
+
+
+
 `;
