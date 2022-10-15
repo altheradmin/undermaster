@@ -179,6 +179,8 @@ const Container = styled.div`
 
     .rsImg {
       height: 2rem;
+      position: absolute;
+      left: 20px;
     }
 
 
