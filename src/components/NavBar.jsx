@@ -190,7 +190,7 @@ const Container = styled.div`
     .menuMobile {
       position: absolute;
       right: 40px;
-      top: 15px;
+      top: 14.5px;
       display: inline;
     }
     .right {
@@ -200,16 +200,7 @@ const Container = styled.div`
 
   }
 
-  @media (max-width: 680px){
 
-
-
-
-
- 
-
-
-  }
 
 
 
