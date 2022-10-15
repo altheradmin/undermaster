@@ -202,7 +202,7 @@ const Container = styled.div`
     }
     .menuMobile {
       position: absolute;
-      top: 15;
+      top: 13;
       right: 40px;
       display: inline;
     }
