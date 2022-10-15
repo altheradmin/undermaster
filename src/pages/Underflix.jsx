@@ -109,6 +109,7 @@ const Container = styled.div`
        position: absolute;
         margin: 5rem;
         top: -14rem;
+        left: 10px;
         gap: 2rem;
         button {
           font-size: 1.4rem;
@@ -137,15 +138,25 @@ const Container = styled.div`
 
   @media (max-width: 1115px){ 
     .info {
-      left: 170px;
-      height: 50px;
+      left: 120px;
+      height: 30px;
+      width: 60px;
+      width: 140px;
       line-height: 1px;
+      font-size: 10px;
+      
+    }
+    .play {
+      height: 30px;
+      width: 140px;
+      font-size: 10px;
+      left: -35px;
     }
     .button2 {
  
 
       position: absolute;
-         top: 100px;
+         top: 8rem;
          padding-right: 2.4rem;
          border: none;
          cursor: pointer;
@@ -172,11 +183,6 @@ const Container = styled.div`
 
   
   }
-.info {
-  left: 170px;
-  height: 50px;
-  line-height: 1px;
-}
 
   button {
  
