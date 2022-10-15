@@ -77,8 +77,8 @@ const Container = styled.div`
 
 .containerLogo{
      
-  top: -400px;
-  left: 50px;
+  top: -30vw;
+  left: 70px;
 
 
    position: absolute;
@@ -140,6 +140,25 @@ const Container = styled.div`
 
   @media (max-width: 1115px){ 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     .containerLogo{
      
       top: -200px;
@@ -189,40 +208,97 @@ const Container = styled.div`
 
 
   }
-  @media (max-width: 788px){ 
 
+  @media (max-width: 978px){
     .containerLogo{
-     width: 400px;
-      top: -140px;
-      left: 50px;
+     
+      top: -28vw;
+      left: 18vw;
+    
+  
+       position: absolute;
+     }
+  }
+
+
+  @media (max-width: 888px){
+    .containerLogo{
+ 
+      top: -28vw;
+      left: 15vw;
+    
+    
+  
+       position: absolute;
+     }
+  }
+
+
+
+
+
+  @media (max-width: 888px){
+    .containerLogo{
+ 
+      top: -28vw;
+      left: 12vw;
+    
+    
+  
+       position: absolute;
+     }
+  }
+
+  @media (max-width: 742px){
+    .containerLogo{
       
+      top: -28vw;
+      left: 13vw;
+    
+    
   
        position: absolute;
      }
 
-  button {
- 
 
- position: absolute;
-    top: 100px;
-    padding-right: 2.4rem;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-    &:hover {
-      opacity: 0.8;
+
+     .fx1{
+    width: 70vw;
     }
-    &:nth-of-type(2) {
-      background-color: rgba(109, 109, 110, 0.7);
-      color: white;
-      svg {
-        font-size: 1.8rem;
-      }
-    }
+
+
+
   }
+
+
 
   @media (max-width: 590px){ 
   
+
+    .info {
+      top: 140px;
+      left: -60px;
+      height: 30px;
+      width: 20px;
+    
+      line-height: 1px;
+
+     
+    }
+    .play {
+      top: 140px;
+      height: 30px;
+      
+    
+      left: 21px;
+    
+   
+    }
+
+
+
+
+
 
     .containerLogo{
       width: 400px;
@@ -256,31 +332,195 @@ const Container = styled.div`
         }
       }
     }
+ 
   
+
+
+    
+  }
+  @media (max-width: 490px){ 
+
+
+   
+
+
+    .containerLogo{
+      width: 80%;
+       top: -10rem;
+       left: 50px;
+       
+   
+        position: absolute;
+      }
+
+
+
+
+    .hero {
+      position: relative;
+      .background-image {
+        height: 110vw;
+      width: 170vw;
+        filter: brightness(40%);
+      }
+   
+    
+      .container {
+        position: absolute;
+        bottom: 5rem;
+        .fix01{
+          margin-top: 100px;
+        }
+   
+     
+        }
+      }
+    }
+  
+
+
+
+    
+
+
+
+
+
+
+
+  }
+
+
+  @media (max-width: 410px){ 
+
     .info {
       top: 140px;
-      left: -60px;
-      height: 40px;
-      width: 60px;
-      width: 140px;
+      left: 2vw;
+      height: 30px;
+      width: 20px;
+    
       line-height: 1px;
 
      
     }
     .play {
       top: 140px;
-      height: 40px;
-      width: 140px;
-      font-size: 10px;
-      left: 85px;
+      height: 30px;
+      
+    
+      left: 95px;
     
    
     }
-  
-
-
-    
   }
+
+
+  @media (max-width: 410px){
+    .play {
+      top: 140px;
+      height: 30px;
+      
+    
+      left: 75px;
+    
+   
+    }
+    .info {
+      top: 140px;
+      left: -2vw;
+      height: 30px;
+      width: 20px;
+    
+      line-height: 1px;
+
+     
+    }
+  }
+  @media (max-width: 360px){
+
+
+    .containerLogo{
+      
+      top: -48vw;
+      left: 13vw;
+    
+    
+  
+       position: absolute;
+     }
+
+
+
+
+
+    .play {
+      top: 180px;
+      height: 30px;
+      
+    
+      left: 62px;
+    
+   
+    }
+    .info {
+      top: 180px;
+      left: -4vw;
+      height: 30px;
+      width: 20px;
+    
+      line-height: 1px;
+
+     
+    }
+  }
+
+
+
+
+  @media (max-width: 344px){
+
+
+    .containerLogo{
+      
+      top: -48vw;
+      left: 13vw;
+    
+    
+  
+       position: absolute;
+     }
+
+
+
+
+
+    .play {
+      top: 180px;
+      height: 30px;
+      
+    
+      left: 53px;
+    
+   
+    }
+    .info {
+      top: 180px;
+      left: -7vw;
+      height: 30px;
+      width: 20px;
+    
+      line-height: 1px;
+
+     
+    }
+  }
+
+
+
+
+
+
+
 
 
 `;
