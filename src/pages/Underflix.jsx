@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
-import { MagicSquare } from '../styles/refcomp';
+
 
 export default function Underflix() {
   const [isScrolled, setIsScrolled] = useState(false);
