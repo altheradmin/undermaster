@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import NavBar from '../components/NavBar';
 import BackgroundImage from '../assets/home.jpg';
-import MovieLogo from "../assets/homeTitle.webp";
+import MovieLogo from "../assets/lg.png";
 import { FaPlay } from 'react-icons/fa';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import styled from 'styled-components';
@@ -77,16 +77,17 @@ const Container = styled.div`
   .hero {
     position: relative;
     .background-image {
-      filter: brightness(60%);
-    }
-    img {
       height: auto;
       width: 100vw;
+      filter: brightness(40%);
     }
+   
     .containerLogo{
-      width: 68%;
-      height: 86%;
-      top -100px;
+     
+     top: -400px;
+     left: 50px;
+     widht: 30px;
+ 
       position: absolute;
     }
     .container {
@@ -95,16 +96,7 @@ const Container = styled.div`
       .fix01{
         margin-top: 100px;
       }
-      .logo {
-        margin-top: 3rem;
-        img {
-          width: 36%;
-          height: 36%;
-          margin-left: 3rem;
-         
-          
-        }
-      }
+
       .buttons {
        position: absolute;
         margin: 5rem;
