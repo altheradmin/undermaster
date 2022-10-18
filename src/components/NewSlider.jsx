@@ -32,15 +32,18 @@ const Container = styled.div`
 
 
 .scrollmenu {
+
   margin-top: -100px;
   background-color: #333;
   overflow-x: hidden;
  height: 350px;
  display: flex;
   padding-top: 40px;
+  touch-action: auto;
 }
 
 div.scrollmenu a {
+
   display: inline-block;
   padding-left: 14px;
  
