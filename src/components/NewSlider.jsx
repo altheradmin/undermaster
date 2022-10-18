@@ -34,7 +34,7 @@ const Container = styled.div`
 .scrollmenu {
 
   margin-top: -100px;
-  background-color: #333;
+
   overflow-x: auto;
  height: 350px;
  display: flex;
