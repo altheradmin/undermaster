@@ -106,29 +106,33 @@ export default React.memo(function Card({ index, movieData, isLiked = false }) {
   );
 });
 
+
 const Container = styled.div`
-  max-width: 230px;
+display: inline-block;
   width: 230px;
-  height: 100%;
+  height: 130px;
   cursor: pointer;
+  transition: 5.6s all;
   position: relative;
+ 
+
   img {
-    border-radius: 0.2rem;
+    border-radius: 0.3rem;
     width: 100%;
     height: 100%;
     z-index: 10;
   }
   .hover {
     z-index: 99;
-    height: max-content;
+    height: auto;
     width: 20rem;
     position: absolute;
-    top: -18vh;
+    top: -5vh;
     left: 0;
     border-radius: 0.3rem;
     box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
     background-color: #181818;
-    transition: 0.3s ease-in-out;
+    transition: 5.6s all;
     .image-video-container {
       position: relative;
       height: 140px;
@@ -163,7 +167,7 @@ const Container = styled.div`
       svg {
         font-size: 2rem;
         cursor: pointer;
-        transition: 0.3s ease-in-out;
+        transition: 1.3s ease-in-out;
         &:hover {
           color: #b8b8b8;
         }
