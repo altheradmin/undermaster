@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
+import NewSlider from '../components/NewSlider';
 
 
 export default function Underflix() {
@@ -67,6 +68,8 @@ console.log(movies);
           
         </div>
       </div>
+      <NewSlider movies={movies}/>
+      <NewSlider movies={movies}/>
       <Slider movies={movies}/>
      <Footer />
     </Container>
@@ -92,6 +95,7 @@ const Container = styled.div`
 
   background-color: black;
   .hero {
+    margin-bottom: 100px;
     position: relative;
     .background-image {
       height: auto;
