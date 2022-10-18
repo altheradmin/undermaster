@@ -40,6 +40,7 @@ const Container = styled.div`
  display: flex;
   padding-top: 40px;
   touch-action: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 div.scrollmenu a {
