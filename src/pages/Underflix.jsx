@@ -69,8 +69,6 @@ console.log(movies);
         </div>
       </div>
       <NewSlider movies={movies}/>
-      <NewSlider movies={movies}/>
-      <Slider movies={movies}/>
      <Footer />
     </Container>
   )
