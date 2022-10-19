@@ -84,11 +84,16 @@ const Container = styled.div`
   
   margin-top: -100px;
 margin-left: 2vw;
-  overflow-x: hidden;
+  overflow-x: auto;
  height: 350px;
  display: flex;
   padding-top: 40px;
   touch-action: auto;
+  -webkit-overflow-scrolling: touch;
+  ::-webkit-scrollbar {
+  height: 0px;                 
+  background-color: transparent;
+}
 }
 
 div.scrollmenu a {
