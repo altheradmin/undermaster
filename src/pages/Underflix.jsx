@@ -40,6 +40,20 @@ window.onscroll =() => {
   return () => (window.onscroll = null);
 }
 console.log(movies);
+  
+  
+  
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  // true for mobile device
+  alert("mobile device");
+}else{
+  // false for not mobile device
+  alert("not mobile device");
+}
+  
+  
+  
+  
   return (
     <Container>
    
