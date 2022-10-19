@@ -68,7 +68,9 @@ console.log(movies);
           
         </div>
       </div>
+
       <NewSlider movies={movies}/>
+
      <Footer />
     </Container>
   )
@@ -93,7 +95,7 @@ const Container = styled.div`
 
   background-color: black;
   .hero {
-    margin-bottom: 100px;
+    margin-bottom: 155px;
     position: relative;
     .background-image {
       height: auto;
