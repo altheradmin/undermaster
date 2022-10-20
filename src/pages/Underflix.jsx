@@ -12,6 +12,7 @@ import { fetchMovies, getGenres } from '../store';
 import Slider from '../components/Slider';
 import Footer from '../components/Footer';
 import NewSlider from '../components/NewSlider';
+import { BrowserView, MobileView } from "react-device-detect";
 
 
 export default function Underflix() {
@@ -82,8 +83,9 @@ console.log(movies);
   
   
 }
-      <NewSlider movies={movies}/>
 
+      <BrowserView><Slider movies={movies}/> </BrowserView>
+      <MobileView><NewSlider movies={movies}/></MobileView>
      <Footer />
         
 
