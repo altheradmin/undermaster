@@ -80,7 +80,7 @@ console.log(movies);
    if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)){
 return <NewSlider movies={movies}/>
 }else{
-<Slider movies={movies}/>
+return <Slider movies={movies}/>
 }
   
   
