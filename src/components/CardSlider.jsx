@@ -56,7 +56,7 @@ const Container = styled.div`
   padding: 2rem 0;
 
   h1 {
-    font-size: 17px;
+    font-size: 22px;
     margin-left: 50px;
     color: smokewhite;
   }
