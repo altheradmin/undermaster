@@ -77,7 +77,7 @@ console.log(movies);
       </div>
 {
 
-   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)){
 return <NewSlider movies={movies}/>
 }else{
 <Slider movies={movies}/>
