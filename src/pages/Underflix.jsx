@@ -43,12 +43,7 @@ console.log(movies);
   
   
   
-  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
- window.location.href = "https://google.com";
-}else{
-
-}
-  
+ 
   
   
   
@@ -80,7 +75,17 @@ console.log(movies);
           
         </div>
       </div>
+{
 
+   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+return <NewSlider movies={movies}/>
+}else{
+<Slider movies={movies}/>
+}
+  
+  
+  
+}
       <NewSlider movies={movies}/>
 
      <Footer />
