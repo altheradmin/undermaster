@@ -54,13 +54,16 @@ const Container = styled.div`
   gap: 1rem;
   position: relative;
   padding: 2rem 0;
+
   h1 {
+    font-size: 17px;
     margin-left: 50px;
+    color: smokewhite;
   }
   .wrapper {
     .slider {
       width: max-content;
-      gap: 1rem;
+      gap: 0.5rem;
       transform: translateX(0px);
       transition: 0.3s ease-in-out;
       margin-left: 50px;
