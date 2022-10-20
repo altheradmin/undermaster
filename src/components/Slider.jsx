@@ -7,6 +7,7 @@ export default function Slider({ movies }) {
   };
   return (
     <Container>
+      <div className="mid">
       <CardSlider data={getMoviesFromRange(0, 7)} title="Novos Filmes" />
       <CardSlider data={getMoviesFromRange(7, 14)} title="Terror" />
       <CardSlider
@@ -17,9 +18,14 @@ export default function Slider({ movies }) {
         data={getMoviesFromRange(21, 28)}
         title="Popular"
       />
-  
+  </div>
     </Container>
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+
+.mid{
+  margin-top: -150px;
+}
+`;
