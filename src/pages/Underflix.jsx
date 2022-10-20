@@ -77,11 +77,7 @@ console.log(movies);
       </div>
 {
 
-   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini)){
-return <NewSlider movies={movies}/>
-}else{
-return <Slider movies={movies}/>
-}
+  
   
   
   
