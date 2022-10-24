@@ -214,9 +214,9 @@ h5{padding-top: 3px;}
   background-size: cover;
 
   z-index: 60;
-  left: 10px;
+  left: 0px;
   top: 30%;
-  width: 98%;
+  width: 100%;
   padding: 30px;
   height: 60%;
   background-color: black;
