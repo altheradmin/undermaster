@@ -271,11 +271,12 @@ const Container = styled.div`
 .showModal{
   border-radius: 30px;
   top: 20vh;
+  width: 100%;
+  left: 0px;
 }
 .modalInfo4{
-
+  width: 100%;
   padding: 20px;
-  
   border-radius: 20px;
  display: flex;
  flex-flow: column nowrap;
@@ -387,9 +388,7 @@ h5{padding-top: 4px;
   z-index: 99;
   height: 60%;
   width: 90%;
-
   position: fixed;
-  left: 5%;
   top: 20%;
 }
   .scrolled {
