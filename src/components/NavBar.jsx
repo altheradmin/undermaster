@@ -226,6 +226,8 @@ export default function NavBar({ isScrolled, currentEmail }) {
                 <div className='mobileText' onClick={() => {setShowSocial(true); setShowMenu(false)}}>Social</div>
                 <div className='mobileText' onClick={() => {setShowContato(true); setShowMenu(false)}}>Pedir Filme</div>
                 <div className='mobileText' onClick={() => {setShowAjuda(true); setShowMenu(false)}}>Ajuda</div>
+                <div className='mobileText' onClick={() => {signOut(firebaseAuth)}}>Sair</div>
+
 
                 
 
