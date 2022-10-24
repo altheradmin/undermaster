@@ -1,157 +1,366 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react'
-import NavBar from '../components/NavBar';
-import BackgroundImage from '../assets/home.jpg';
-import LogoLor from '../assets/logo2lor.jpg'
-import MovieLogo from "../assets/lg.png";
-import { FaInfoCircle, FaPlay } from 'react-icons/fa';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies, getGenres } from '../store';
-import Footer from '../components/Footer';
-import NewSlider from '../components/NewSlider';
-import { onAuthStateChanged } from 'firebase/auth';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components'
+import logo from '../assets/logo.png'
+import { FaPowerOff, FaSearch } from "react-icons/fa"
+import { signOut , onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../utils/firebase-config';
+import { BiMenu } from 'react-icons/bi';
+import New from '../assets/new.jpg';
+import { FaPlay } from 'react-icons/fa';
+import { useEffect } from 'react';
+import axios from 'axios';
+const baseURL = "https://undermapi.herokuapp.com/videos";
 
-
-export default function Underflix() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
-  const movies = useSelector((state) => state.netflix.movies);
-  const dispatch = useDispatch();  
-  const [open, setOpen] = useState(false);
-  const [ema, setEma] = useState('');
-  
-  useEffect(() => {
-    dispatch(getGenres());
-  }, [])
-
-
-  useEffect(() => {
- 
-      dispatch(fetchMovies({ type: "all" }));
-      onAuthStateChanged(firebaseAuth, (currentUser) => {
-        if (currentUser) setEma(currentUser.email)
+export default function NavBar({ isScrolled, currentEmail }) {
+    const navigate = useNavigate();
+    var emailN;
+    const close = () => {
+      setShowContato(false);
+    }
+    const close2 = () => {
+      setShowAjuda(false);
+    }
+    const close3 = () => {
+      setShowContact(false);
+    }
+    const close4 = () => {
+      setShowSocial(false);
+    }
+    const close5 = () => {
+      setShowMenu(false);
+    }
+    const [showCon, setShowCon] = useState('aaaa');
+    onAuthStateChanged(firebaseAuth, (currentUser) => {
+        if (!currentUser) {navigate("/login")};
          });
+      
+
+         const [showContato, setShowContato] = useState(false);
+         const [showAjuda, setShowAjuda] = useState(false);
+         const [showMenu, setShowMenu] = useState(false);
+         const [showContact, setShowContact] = useState(false);
+         const [showSocial, setShowSocial] = useState(false);
+         const [sucess, setSucess] = useState('');
+         const [pedido, setPedido] = useState('');
+         
+
+
+    async function master(params) {
     
-  }, []);
+      await axios.post(baseURL, [{email: currentEmail, msg: pedido}]).then((response) => {
+         setSucess('Enviado com sucesso!');
+         setTimeout(() => {
+          setSucess('');
+         }, 5000);
+      });
+      
+    }
 
-
-
-  
-
-
-window.onscroll =() => {
-  setIsScrolled(window.pageYOffset === 0 ? false : true);
-  return () => (window.onscroll = null);
-}
 
   return (
+
     <Container>
-   
-      <NavBar isScrolled={isScrolled} currentEmail={ema}/>
-      <div className="hero">
-<div className='gradient'></div>
-        <img 
-        src={BackgroundImage} 
-        alt="Background"
-        className="background-image background-image2"
-        />
-        <div className="container">
-        <div className="desc">The Lord of the Rings: The Rings of Power é uma série de televisão via streaming estadounidense produzida com base no romance de fantasia O Senhor dos Anéis e seus apêndices de J. R. R. Tolkien. Foi desenvolvida por J. D. Payne e Patrick McKay para o serviço de streaming Prime Video. EM UPLOAD!
-        </div> 
-       
-            <img className="containerLogo fx1" src={MovieLogo} alt="Movie Logo"/>
-          
-          <div className="buttons flex " >
-          <FaInfoCircle onClick={() => {setOpen(true)}} className='finalM'></FaInfoCircle>
-          <div className={`${ open ? 'showModal' : 'modal'}`} style={{ backgroundImage:`url(${LogoLor})` }}>
-         <div className="modalInfo">
-              <img 
-        src={MovieLogo} 
-        alt="Background"
-        className="logo2"
-        />
-         <h6>Nota 97% <a>2022</a><text>TV - Séries</text></h6>
-          </div>
-          <div className="infoM">The Lord of the Rings: The Rings of Power é uma série de televisão via streaming estadounidense produzida com base no romance de fantasia O Senhor dos Anéis e seus apêndices de J. R. R. Tolkien. Foi desenvolvida por J. D. Payne e Patrick McKay para o serviço de streaming Prime Video.
-        </div>
+        <nav className={`nav1 flex ${isScrolled ? "scrolled" : ""}`}>
+            <div className="left flex a-center">
+                <div className="brand flex a-center j-center">
+                    <img className="rsImg" src={logo} alt="logo" />
+                </div>
+                <ul className="links flex">
+                <li onClick={() => setShowContact(true)}>Contato</li>
+                <li onClick={() => setShowSocial(true)}>Social</li>
+                <li onClick={() => setShowContato(true)}>Pedir Filme</li>
+                <li onClick={() => setShowAjuda(true)}>Ajuda</li>
 
-        <a className="exit" onClick={() => {setOpen(false)}}>X</a>
-          <button onClick={() => navigate(`/player?aneisdopoder.mp4?alt=media&token=79e8a065-7c20-49a3-99a6-49f9b6282112`)} 
-          className=" flex j-center a-center sumir" >
-              <h5>Trailer</h5><FaPlay /> 
-              </button>
+                </ul>
+                {showContato &&
+                
         
-          </div>
-            <button  className="button2 flex j-center a-center play sumir" >
-              <FaPlay />Breve
-              
-            </button >
-            <button onClick={() => {
-          setOpen(true);
-        }} className="button2 flex j-center a-center info sumir">
-              <AiOutlineInfoCircle /> Info
-            </button>
-            
-          </div>
           
-        </div>
-      </div>
-     <NewSlider movies={movies}/> 
-
-     
-  
+                <div className='open'>
+      <div className='showModal' 
+      style={{ backgroundImage:`url(${New})`}}
       
-     <Footer />
+      >
+<div className="modalInfo">
+<a className="exit"  onClick={close}>X</a>
+<h1>{'Pedido de Filme/Série'}</h1>
+<h6>{'Responderei pelo email cadastrado:'} <div className='blurr'>{currentEmail}</div></h6>
+<div className="texto">
+<h7 >{'Informe o NOME e ANO do FILME ou SÉRIE desejada no espaço abaixo, sinta se a vontade para comentar sobre o filme e passar outro contato pela mensagem. *Respondo quando possível :)'}</h7>
+</div>
+</div>
+<div className="infoM">
+ <textarea onChange={(e) => setPedido(e.target.value)} className="text"> </textarea>
+</div>
+<div className="flex">
 
+    <button   onClick={master} className="btnN flex j-center a-center sumir assistir" >
+    <h5>Enviar <FaPlay className='faplay'/></h5>  
+    </button>
+    </div>{<div className='status'>{sucess}</div>}
+ 
+</div>
+</div>
+      
+                
+                }
+
+
+{showAjuda ?
+              
+                <div className='open'>
+      <div className='showModal' 
+
+      
+      >
+
+        
+<div className="modalInfo">
+<a className="exit"  onClick={close2}>X</a>
+<h1>{'Ajuda'}</h1>
+<h6>{'Responderei pelo email cadastrado:'} <div className='blurr'>{currentEmail}</div></h6>
+<div className="texto">
+<h7 >{'Estou fazendo a documentação desse site, para mais informações entrar em contato, ou mandar mensagem diretamente abaixo *Respondo quando possível :)'}</h7>
+</div>
+</div>
+<div className="infoM">
+ <textarea onChange={(e) => setPedido(e.target.value)} className="text"> </textarea>
+</div>
+<div className="flex">
+
+    <button   onClick={master} className="btnN flex j-center a-center sumir assistir" >
+    <h5>Enviar <FaPlay className='faplay'/></h5>  
+    </button>
+    </div>{<div className='status'>{sucess}</div>}
+ 
+</div>
+</div>
+      
+                
+        : ''       }
+
+
+
+
+
+{showContact ?
+                  
+                  <div className='open'>
+        <div className='showModal' 
+
+        
+        >
+  <div className="modalInfo">
+  <a className="exit"  onClick={close3}>X</a>
+  <h1>{'Contato'}</h1>
+ <a className='nome'> Altair Constâncio Junior</a>
+  <div className='itemB'><a className='itemC'>Email: </a> althertechadm@gmail.com</div>
+  <div className='itemB'><a className='itemC'>WhatsApp: </a> {`(11) `}93724-2213</div>
+  <div className='itemB'><a className='itemC'>Facebook: </a> <a className='nome2' target="_blank" href='https://www.facebook.com/profile.php?id=100087362011131'>Visitar perfil</a></div>
+  <div className="texto">
+
+  </div>
+  </div>
+
+  <div className="flex">
+  
+  
+      </div>{<div className='status'>{sucess}</div>}
+   
+  </div>
+  </div>
+        
+                  
+          : ''       }
+
+
+
+
+
+
+{showSocial ?
+                  
+                  <div className='open'>
+        <div className='showModal' 
+
+        
+        >
+  <div className="modalInfo">
+  <a className="exit"  onClick={close4}>X</a>
+  <h1>{'Social'}</h1>
+ <a className='nome'> Altair Constâncio Junior</a>
+ <div className='itemB'><a className='itemC'>Facebook: </a> <a className='nome2' target="_blank" href='https://www.facebook.com/profile.php?id=100087362011131'>Visitar perfil</a></div>
+ <div className='itemB'><a className='itemC'>Instagram: </a> <a className='nome2' target="_blank" href='https://www.instagram.com/altairtech23/'>Visitar perfil</a></div>
+ <div className='itemB'><a className='itemC'>LinkedIn: </a> <a className='nome2'>Em breve </a></div>
+  <div className="texto">
+
+  </div>
+  </div>
+
+  <div className="flex">
+  
+  
+      </div>{<div className='status'>{sucess}</div>}
+   
+  </div>
+  </div>
+        
+                  
+          : ''       }
+
+
+
+{showMenu ?
+                  
+                  <div className='open'>
+        <div className='showModal' 
+
+        
+        >
+  <div className="modalInfo4">
+  <a className="exit"  onClick={close5}>X</a>
+  <h1>   <img className='logoult' src={logo} alt="logo" /></h1>
+
+                <div className='mobileText' onClick={() => {setShowContact(true); setShowMenu(false)}}>Contato</div>
+                <div className='mobileText' onClick={() => {setShowSocial(true); setShowMenu(false)}}>Social</div>
+                <div className='mobileText' onClick={() => {setShowContato(true); setShowMenu(false)}}>Pedir Filme</div>
+                <div className='mobileText' onClick={() => {setShowAjuda(true); setShowMenu(false)}}>Ajuda</div>
+                <div className='mobileText' onClick={() => {signOut(firebaseAuth)}}>Sair</div>
+
+
+                
+
+  </div>
+
+
+   
+  </div>
+  </div>
+        
+                  
+          : ''       }
+
+
+                <div onClick={() => setShowMenu(true)} className="menuMobile"><BiMenu/></div>
+            </div>
+            <div className="right flex a-center">
+            <button onClick={() => signOut(firebaseAuth)}>
+                    <FaPowerOff />
+                </button>
+          
+            </div>
+        </nav>
     </Container>
   )
 }
+
+
 const Container = styled.div`
-.finalM{
-  display: none;
-  opacity: 0.4;
-  color: rgba(50, 250, 50, 0.5);
-  font-size: 30px;
-  position: absolute;
-  left: -40px;
-  top: 180px;
-} .finalM:hover{
-  opacity: 0.7;
+.logoult{
+  height: 40px;
 }
-.button2 {
- 
-  opacity: 0.7;
- 
-     z-index: 40;
-    
-     border: none;
-     
-     transition: 0.2s ease-in-out;
-     &:hover {
-       opacity: 0.9;
-     }
-     &:nth-of-type(2) {
-       background-color: rgba(109, 109, 110, 0.7);
-       color: white;
-       svg {
-         font-size: 1.8rem;
-       }
-     }
-   }
+.mobileText{
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 40px;
+  color: rgba(190, 190, 190, 0.8);
+}.mobileText:hover{
+  color: rgba(250, 120, 120, 1.0);
+}
+.showModal{
+  border-radius: 30px;
+  top: 20vh;
+}
+.modalInfo4{
 
+  padding: 20px;
+  
+  border-radius: 20px;
+ display: flex;
+ flex-flow: column nowrap;
+ justify-content: center;
+ align-items: center;
+;
+}
+.nav1{
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  z-index: 99;
+}
+.itemB {
+  color: whitesmoke;
+}
+.itemC {
+  color: rgb(130, 130, 130);
+  text-decoration: none;
+  font-size: 17px;
+}
+.nome2{
+text-decoration: none;
+  color: rgb(230, 130, 130);
+}
+.nome{
+  text-decoration: none;
+  color: rgb(255, 130, 130);
+  font-size: 20px;
 
-.gradient{
-  background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  position: absolute;
-z-index: 30;
-  width: 100%;
-  bottom: 0px;
-  height: 300px;
+}
+.contact2{
+  color: white;
+}
+.blurr{
+  color: rgb(130, 130, 130);
+  font-size: 13px;
+}
+.status{
+  color: green;
+}
+.texto{
+  max-width: 500px;
+  z-index: 99;
+}
+.text{
+  resize: none;
+  width: 400px; 
+  background-color: black;
+  color: white;
+  z-index: 99;
+}
+h6 {
+  a{
+    margin-right: 10px;
+  }
+}
+
+.assistir{
+  background-color: rgba(250, 250, 250, 0.7);
+  padding-top: 4px;
+} .assistir:hover{
+  background-color: rgba(250, 200, 200, 0.7);
+}
+.faplay{
+  margin-top: -4px;
+  color: rgba(250, 30, 30, 0.6)
+}
+
+.infoM {
+  width: 48%;
+}
+
+.btnN {
+  margin-top: 20px;
+}
+
+.cardTitle {
+  margin-top: 5px;
+  z-index: 999;
+  
+}
+.flexCard {
+  font-size: 15px;
+  margin-top: -7px;
+  z-index: 999;
+
 }
 .exit{
   position: absolute;
@@ -162,658 +371,182 @@ z-index: 30;
   text-decoration: none;
   font-size: 30px;
 }
-h5{padding-top: 3px;}
-.imgLor{
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center top;
+h5{padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px;
+  cursor: pointer;
+  padding-right: 15px;
+.icon{
+  padding: 10px;
 }
-.logo2{
-  height: 70px;
-  margin-bottom: 15px;
-  
-}
-.infoM{
-  margin-top: 10px;
-  margin-bottom: 14px;
-  max-width: 590px;
-  font-size: 15px;
-  color: rgb(200,200,200);
-}
-.modalInfo h6{
-  color: green;
-  a{
-    color: whitesmoke;
-  }
-  text{
-    color: orange;
-    margin-left: 5px;
-    border: rgb(130,130,130) solid 2px;
-    padding: 1px 4px;
-    font-size: 14px;
-  }
 }
 
 
 
-
-.modal{
-
-  
- 
-  width: 400px;
-  height: 400px;
-  z-index: 60;
-  position: fixed;
-
-}
-
-.showModal{
-  position: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  z-index: 60;
-  left: 10px;
-  top: 30%;
-  width: 98%;
-  padding: 30px;
+.open{
+  z-index: 99;
   height: 60%;
-  background-color: black;
+  width: 90%;
 
+  position: fixed;
+  left: 5%;
+  top: 20%;
 }
-
-.desc{
-  position: absolute;
-  top: -320px;
-  max-width: 600px;
-  z-index: 50;
-  left: 70px;
-  color: #c9c9c9;
-  font-size: 15px;
-}
-.containerLogo{
-     
-  top: -37vw;
-  left: 70px;
-
-
-   position: absolute;
- }
-
-
-
-
-
-
-
-  background-color: black;
-  .hero {
-    margin-bottom: 155px;
-    position: relative;
-    .background-image {
-      height: auto;
-      width: 100vw;
-      filter: brightness(40%);
-    }
-   
-  
-    .container {
-      position: absolute;
-      bottom: 5rem;
-      .fix01{
-        margin-top: 100px;
-      }
-
-      .buttons {
-       position: absolute;
-        margin: 5rem;
-        top: -17rem;
-        left: 10px;
-        gap: 2rem;
-        z-index: 70;
-        button {
-          font-size: 1.4rem;
-          gap: 1rem;
-          border-radius: 0.2rem;
-          padding: 0.5rem;
-          padding-left: 2rem;
-          padding-right: 2.4rem;
-          border: none;
-          cursor: pointer;
-          transition: 0.2s ease-in-out;
-          &:  {
-            opacity: 0.9;
-          }
-          &:nth-of-type(2) {
-            background-color: rgba(109, 109, 110, 0.7);
-            color: white;
-            margin-left: -15px;
-            svg {
-              font-size: 1.8rem;
-            }
-          }
-        }
-      }
-    }
+  .scrolled {
+    background-color: black;
+    z-index: 999;
   }
-  @media (max-width: 1215px){
-    .containerLogo{
-     
-      top: -32vw;
-      left: 70px;
-    
-    
-       position: absolute;
-     }
-    
-    .info {
-      position: absolute;
-      top: 90px;
-      left: 163px;
-    }
-    .play {
-      position: absolute;
-      top: 90px;
-      left: -21px;
-    
-   
-    }
-
-    .desc{
-      position: absolute;
-      top: -220px;
-      left: 70px;
-      color: #c9c9c9;
-      font-size: 15px;
-    }
-
-
-   }
-  @media (max-width: 1115px){ 
-
-
-
-
-
-
-
-    .desc{
-      position: absolute;
-      top: -220px;
-      left: 70px;
-      color: #c9c9c9;
-      font-size: 15px;
-    }
-
-
-
-
-
-
-
-    
-    .containerLogo{
-     
-      top: -360px;
-      left: 50px;
-    
-  
-       position: absolute;
-     }
-
-
-
-    .info {
-      left: 130px;
-      height: 40px;
-      width: 60px;
-      width: 140px;
-      line-height: 1px;
-      font-size: 10px;
-      
-    }
-    .play {
-      height: 40px;
-      width: 140px;
-      font-size: 10px;
-      left: -35px;
-    }
-    .button2 {
- 
-      opacity: 0.5;
-      position: absolute;
-         top: 8rem;
-         z-index: 40;
-         padding-right: 2.4rem;
-         border: none;
-         cursor: pointer;
-         transition: 0.2s ease-in-out;
-         &:hover {
-           opacity: 0.9;
-         }
-         &:nth-of-type(2) {
-           background-color: rgba(109, 109, 110, 0.7);
-           color: white;
-           svg {
-             font-size: 1.8rem;
-           }
-         }
-       }
-
-
-  }
-
-  @media (max-width: 978px){
-    .containerLogo{
-     
-      top: -34vw;
-      left: 7vw;
-    
-  
-       position: absolute;
-     }
-
-     .fx1{
-      width: 50vw;
-      }
-      .desc{
-        top: -200px;
-        left: 70px;
-        font-size: 13px;
-      }
-
-
-
-
-
-
-
-      
-  }
-
-
-
-
-
-
-
-
-  @media (max-width: 888px){
-    .containerLogo{
-     
-      top: -32vw;
-      left: 7vw;
-    
-  
-       position: absolute;
-     }
-
-     .fx1{
-      width: 50vw;
-      }
-      .desc{
-        top: -155px;
-        left: 36px;
-        font-size: 13px;
-      }
-   
-
-
-
-      .info {
-        top: 140px;
-        left: -40px;
-        height: 30px;
-        width: 20px;
-      
-        line-height: 1px;
-  
-       
-      }
-      .play {
-        top: 140px;
-        height: 30px;
-        
-      
-        left: 21px;
-      
-     
-      }
-
-
-
-
-
-
-      
-  }
-
-  @media (max-width: 742px){
-
-
-
-
-    .desc{
-      top: -82px;
-      left: 36px;
-      font-size: 13px;
-    }
-
-
-
-    .containerLogo{
-      
-      top: -29vw;
-      left: 13vw;
-    
-    
-  
-       position: absolute;
-     }
-
-
-
-     .fx1{
-    width: 70vw;
-    }
-
-
-    .info {
-      top: 210px;
-      left: -40px;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
-
-     
-    }
-    .play {
-      top: 210px;
-      height: 30px;
-      
-    
-      left: 21px;
-    
-   
-    }
-
-  }
-
-
-  @media (max-width: 590px){ 
-    .finalM{
-      display: flex;
-    }
-    .gradient{
-      height: 20vh;
-    }
-    .showModal{
-      height: 90%;
-      top: 15vh;
-      left: 0px;
-      overflow-y: auto;
-    }
-    .modalInfo{
-      img{
-        height: 60px;
-      }
-    }
-    .desc{
-      top: -155px;
-      left: 36px;
-      font-size: 13px;
-    }
-    .info {
-      display: none;
-
-      top: 140px;
-      left: -40px;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
-
-     
-    }
-    .play {
-      display: none;
-      top: 140px;
-      height: 30px;
-      
-    
-      left: 21px;
-    
-   
-    }
-
-
-
-
-
-
-    .containerLogo{
-      width: 400px;
-       top: -280px;
-       left: 50px;
-       
-   
-        position: absolute;
-      }
-
-
-
-
-    .hero {
-      position: relative;
-      .background-image {
-        height: 110vw;
-      width: 170vw;
-        filter: brightness(40%);
-      }
-   
-    
-      .container {
-        position: absolute;
-        bottom: 5rem;
-        .fix01{
-          margin-top: 100px;
-        }
-   
-     
-        }
-      }
-    }
- 
-  
-
-
-    
-  }
-  @media (max-width: 490px){ 
-
-
-   .desc{
+  .menuMobile {
     display: none;
-   }
-
-
-    .containerLogo{
-      width: 80%;
-       top: -14rem;
-       left: 50px;
-       
-   
-        position: absolute;
+    color: rgb(300, 100, 100);
+    font-size: 37px;
+  }
+  .rsImg {
+    height: 2.4rem;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    height: 6.5rem;
+    width: 100%;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    padding: 0 4rem;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    .left {
+      gap: 2rem;
+      .brand {
+        
       }
+      .links {
+        list-style-type: none;
+        gap: 2rem;
+  
+        li {
+          cursor: pointer;
+          opacity: 0.7;
+          a {
+            color: white;
+            text-decoration: none;
+          }
+        } li:hover{
+          opacity: 1.0;
 
-
-
-
-    .hero {
-      position: relative;
-      .background-image {
-        height: 110vw;
-      width: 170vw;
-        filter: brightness(40%);
-      }
-   
-    
-      .container {
-        position: absolute;
-        bottom: 5rem;
-        .fix01{
-          margin-top: 100px;
         }
-   
-     
+      }
+    }
+    .right {
+      gap: 1rem;
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        &:focus {
+          outline: none;
+        }
+        svg {
+          color: #f34242;
+          font-size: 1.2rem;
+        }
+      }
+      .search {
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        justify-content: center;
+        padding: 0.2rem;
+        padding-left: 0.5rem;
+        button {
+          background-color: transparent;
+          border: none;
+          &:focus {
+            outline: none;
+          }
+          svg {
+            color: white;
+            font-size: 1.2rem;
+          }
+        }
+        input {
+          width: 0;
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.3s ease-in-out;
+          background-color: transparent;
+          border: none;
+          color: white;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      .show-search {
+        border: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.6);
+        input {
+          width: 100%;
+          opacity: 1;
+          visibility: visible;
+          padding: 0.3rem;
         }
       }
     }
-  
+  }
+
+  @media (max-width: 788px){
+
+    nav {
+      height: 5.5rem;
+    }
+    .rsImg {
+      height: 2rem;
+      position: absolute;
+      left: 20px;
+      top: 32px;
+    }
 
 
-
+    .links {
     
+      display: none;
+    }
 
-
-
-
-
+    .menuMobile {
+      position: absolute;
+      right: 40px;
+      top: 15px;
+      list-style: none;
+      cursor: pointer;
+      display: inline;
+    } .menuMobile:hover {
+      color: rgba(255, 50, 50, 1.0);
+    }
+    .right {
+      display: none;
+    }
 
 
   }
 
+  @media (max-width: 680px){
 
-  @media (max-width: 410px){ 
-    .modalInfo{
-      img{
-        height: 40px;
-      }
-    }
-    .info {
-      top: 140px;
-      left: 2vw;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
 
-     
+
+
+    .text{
+      resize: none;
+      width: 200px; 
+      background-color: black;
+      color: white;
+      z-index: 99;
     }
-    .play {
-      top: 140px;
-      height: 30px;
-      
-    
-      left: 95px;
-    
-   
-    }
+ 
+
+
   }
-
-
-  @media (max-width: 410px){
-    .play {
-      top: 140px;
-      height: 30px;
-      
-    
-      left: 75px;
-    
-   
-    }
-    .info {
-      top: 140px;
-      left: -2vw;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
-
-     
-    }
-  }
-  @media (max-width: 360px){
-
-
-    .containerLogo{
-      
-      top: -48vw;
-      left: 13vw;
-    
-    
-  
-       position: absolute;
-     }
-
-
-
-
-
-    .play {
-      top: 180px;
-      height: 30px;
-      
-    
-      left: 62px;
-    
-   
-    }
-    .info {
-      top: 180px;
-      left: -4vw;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
-
-     
-    }
-  }
-
-
-
-
-  @media (max-width: 344px){
-
-
-    .containerLogo{
-      
-      top: -48vw;
-      left: 13vw;
-    
-    
-  
-       position: absolute;
-     }
-
-
-
-
-
-    .play {
-      top: 180px;
-      height: 30px;
-      
-    
-      left: 53px;
-    
-   
-    }
-    .info {
-      top: 180px;
-      left: -7vw;
-      height: 30px;
-      width: 20px;
-    
-      line-height: 1px;
-
-     
-    }
-  }
-
 
 
 
