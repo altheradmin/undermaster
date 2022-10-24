@@ -10,7 +10,7 @@ import New from '../assets/new.jpg';
 import { FaPlay } from 'react-icons/fa';
 import { useEffect } from 'react';
 import axios from 'axios';
-const baseURL = "http://localhost:8081/videos";
+const baseURL = "https://undermapi.herokuapp.com/videos";
 
 export default function NavBar({ isScrolled, currentEmail }) {
     const navigate = useNavigate();
