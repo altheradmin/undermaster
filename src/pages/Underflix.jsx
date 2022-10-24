@@ -10,11 +10,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store';
-import Slider from '../components/Slider';
 import Footer from '../components/Footer';
-import { BrowserView, MobileView } from "react-device-detect";
 import NewSlider from '../components/NewSlider';
-import Register from '../utils/Register';
 import { onAuthStateChanged } from 'firebase/auth';
 import { firebaseAuth } from '../utils/firebase-config';
 
@@ -104,7 +101,7 @@ window.onscroll =() => {
           
         </div>
       </div>
-      <BrowserView><NewSlider movies={movies}/> </BrowserView>
+     <NewSlider movies={movies}/> 
 
      
   
