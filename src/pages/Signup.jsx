@@ -21,7 +21,7 @@ export default function Signup() {
       } catch (err) {
         console.log(err);
       }
-        console.log(formValues);
+
     }
 
 
@@ -39,17 +39,46 @@ if (currentUser) navigate("/");
 
 
     return  <Container showPassword={showPassword}>
+      
     <BackgroundImage />
     <div className="content">
     <Header login/>
     <div className="body flex column a-center j-center">
     <div className="text flex column">
-        <h1>Unlimited movies, Tv shows and more</h1>
-        <h4>Wathch anywhere. Cancel anytime.</h4>
-        <h6>Ready to wathch? Enter yout email to create or restart membership</h6>
+        <h1>Filmes Séries, Tv shows e mais</h1>
+        <h4>Sem propagantas, totalmente gratuito.</h4>
+        <h6>Insira um email e uma senha para cadastrar-se.</h6>
         </div>
+        <div className='formM'>
+
+          <input className='tofix2' type="email" 
+        placeholder="Seu Email"
+         name="email"
+          value={formValues.email}
+           onChange={(e) =>
+             setFormValues({
+            ...formValues,
+            [e.target.name]:e.target.value,
+            })
+            }
+            />
+
+<input className='tofix' type="password"
+         placeholder="Senha"
+          name="password"
+          value={formValues.password}
+          onChange={(e) =>
+            setFormValues({
+           ...formValues,
+           [e.target.name]:e.target.value,
+           })
+           }
+          />
+
+          </div>
         <div className='form'>
-        <input type="email" 
+          
+        <input className='tofix2' type="email" 
         placeholder="Seu Email"
          name="email"
           value={formValues.email}
@@ -61,7 +90,7 @@ if (currentUser) navigate("/");
             }
             />
         {showPassword && (
-        <input type="password"
+        <input className='tofix' type="password"
          placeholder="Senha"
           name="password"
           value={formValues.password}
@@ -71,21 +100,19 @@ if (currentUser) navigate("/");
            [e.target.name]:e.target.value,
            })
            }
-          
-          
-          
-          
-          /> 
+          />
+           
         )}
-        {!showPassword && <button onClick={() => setShowPassword(true)}>Get Started</button>}
+        {!showPassword && <button className='botaoult' onClick={() => setShowPassword(true)}>cadastrar</button>}
     
         </div>
-        <button onClick={handleSignIn}>Sign up</button>
+        <button onClick={handleSignIn}>Finalizar</button>
     </div></div>
      </Container>
   }
 
   const Container = styled.div`
+ .formM{display: none;}
   position: relative;
   .content {
     position: absolute;
@@ -94,43 +121,18 @@ if (currentUser) navigate("/");
     background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
     width: 100vw;
-    display: grid;
+    display: column;
     grid-template-rows: 15vh 85vh;
     .body {
+      margin-top: 100px;
       gap: 1rem;
       .text {
-        gap: 1rem;
+       padding: 20px;
         text-align: center;
         font-size: 2rem;
-        h1 {
-          padding: 0 25rem;
-        }
+  
       }
-      .form {
-        display: grid;
-        grid-template-columns: ${({ showPassword }) =>
-          showPassword ? "1fr 1fr" : "2fr 1fr"};
-        width: 60%;
-        input {
-          color: black;
-          border: none;
-          padding: 1.5rem;
-          font-size: 1.2rem;
-          border: 1px solid black;
-          &:focus {
-            outline: none;
-          }
-        }
-        button {
-          padding: 0.5rem 1rem;
-          background-color: #e50914;
-          border: none;
-          cursor: pointer;
-          color: white;
-          font-weight: bolder;
-          font-size: 1.05rem;
-        }
-      }
+      
       button {
         padding: 0.5rem 1rem;
         background-color: #e50914;
@@ -143,4 +145,100 @@ if (currentUser) navigate("/");
       }
     }
   }
+
+
+  .form {
+    display: grid;
+    grid-template-columns: ${({ showPassword }) =>
+      showPassword ? "1fr 1fr" : "2fr 1fr"};
+    width: 60%;
+    input {
+      color: black;
+      border: none;
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      border: 1px solid black;
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background-color: #e50914;
+      border: none;
+      cursor: pointer;
+      color: white;
+      font-weight: bolder;
+      font-size: 1.05rem;
+    }
+  }
+
+
+  @media (max-width: 750px){ 
+   
+    .form {
+      display: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 350px;
+      input {
+        color: black;
+        border: none;
+        padding: 0.2rem;
+        font-size: 1.0rem;
+        border: 1px solid black;
+    
+      }
+      button{
+        height: 30px;
+        line-height: 3px;
+      }
+    }
+  }
+
+
+  @media (max-width: 500px){ 
+    .formM{
+    display: initial;
+
+
+
+    }
+    .form {
+      display: none;
+
+    
+      }
+
+    }
+  }
+  @media (max-width: 375px){
+    input {
+      padding: 0.3rem;
+      font-size: 1.2rem;
+      margin-left: 12vw;
+    }
+
+   }
+   @media (max-width: 285px){
+    input {
+      padding: 0.3rem;
+      font-size: 1.2rem;
+      margin-left: 7%;
+    }
+
+   }
+   @media (max-width: 255px){
+    input {
+      padding: 0.3rem;
+      font-size: 1.2rem;
+      margin-left: 4%;
+    }
+
+   }
+   @media (max-width: 240px){
+    overflow-y: auto;
+    overflow-x: auto;
+
+   }
 `;

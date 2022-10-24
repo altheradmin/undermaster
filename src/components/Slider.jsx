@@ -27,5 +27,6 @@ const Container = styled.div`
 
 .mid{
   margin-top: -150px;
+
 }
 `;

@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
 export default function Footer() {
+  function alerta(params) {
+    alert('Essas funcionalidades serão adicionadas quando houver necessidade! Site ainda não tem muitos usuários')
+  }
   return (
     <Container>
     
@@ -49,16 +53,16 @@ export default function Footer() {
 
           <ul className="list-unstyled mb-0">
             <li>
-              <a href="#!" className=" textC">Conta</a>
+              <a onClick={alerta} href="#!" className=" textC">Conta</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Esqueci Senha</a>
+              <a onClick={alerta} href="#!" className=" textC">Esqueci Senha</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Administrador</a>
+              <a onClick={alerta} href="#!" className=" textC">Administrador</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Configurações</a>
+              <a onClick={alerta} href="#!" className=" textC">Configurações</a>
             </li>
           </ul>
         </div>
@@ -79,13 +83,13 @@ export default function Footer() {
 
           <ul className="list-unstyled mb-0">
             <li>
-              <a href="#!" className=" textC">Sobre</a>
+              <a onClick={alerta} href="#!" className=" textC">Sobre</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Contato</a>
+              <a onClick={alerta} href="#!" className=" textC">Contato</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Perguntas frequentes</a>
+              <a onClick={alerta} href="#!" className=" textC">Perguntas frequentes</a>
             </li>
             <li>
               <a href="#!" className=" textC">Sugerir Filme</a>
@@ -100,13 +104,13 @@ export default function Footer() {
 
           <ul className="list-unstyled mb-0">
             <li>
-              <a href="#!" className=" textC">Ajuda</a>
+              <a onClick={alerta} href="#!" className=" textC">Copyright</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Reportar um bug</a>
+              <a onClick={alerta} href="#!" className=" textC">Reclame aqui</a>
             </li>
             <li>
-              <a href="#!" className=" textC">SiteMap</a>
+              <a onClick={alerta} href="#!" className=" textC">SiteMap</a>
             </li>
      
           </ul>
@@ -122,17 +126,20 @@ export default function Footer() {
 
           <ul className="list-unstyled mb-0">
             <li>
-              <a href="#!" className=" textC">LinkedIn</a>
+              <a onClick={alerta} href="#!" className=" textC">Estatísticas</a>
             </li>
             <li>
-              <a href="#!" className=" textC">GitHub</a>
+              <a onClick={alerta} href="#!" className=" textC">Favoritos</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Portfólio</a>
+              <a onClick={alerta} href="#!" className=" textC">Minha lista</a>
             </li>
             <li>
-              <a href="#!" className=" textC">Facebook</a>
+              <a onClick={alerta} href="#!" className=" textC">Preferências</a>
             </li>
+
+
+
           </ul>
         </div>
        
@@ -191,10 +198,16 @@ color: rgba(100, 100, 100, 1.0);
  
 }
 .textC {
+  opacity: 0.5;
     font-size: 15px;
-    color: rgba(200, 200, 200, 0.3);
+    color: rgba(200, 200, 200, 0.5);
     text-decoration: none;     
     }
+.textC:hover {
+  opacity: 1.0;
+}
+
+
     .textA {
         font-size: 18px;
         color: rgba(200, 200, 200, 0.5);
@@ -211,7 +224,7 @@ color: rgba(100, 100, 100, 1.0);
 
 .copyright2{
     background-color: rgba(170, 170, 170, 0.03);
-    margin-top: 15px;
+    margin-top: -65px;
     margin-bottom: 15px;
 }
 

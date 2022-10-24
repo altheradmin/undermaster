@@ -1,188 +1,287 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import { useState } from 'react';
 import styled from "styled-components";
-import { IoPlayCircleSharp } from "react-icons/io5";
-import { AiOutlinePlus } from "react-icons/ai";
-import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
-import { BiChevronDown } from "react-icons/bi";
-import { BsCheck } from "react-icons/bs";
-import axios from "axios";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../utils/firebase-config";
-import { useDispatch } from "react-redux";
-import { removeMovieFromLiked } from "../store";
+import Antigo from '../assets/logo2an.jpg';
+import Terror from '../assets/terror.jpg';
+import New from '../assets/new.jpg';
+import Logotr from '../assets/logo2lor.jpg';
+import MovieLogo from "../assets/lg.png";
+import { FaInfo, FaInfoCircle, FaPlay } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from '../utils/firebase-config';
+import { useEffect } from 'react';
+export default function Card({ movieData }) {
+const [open, setOpen] = useState(false);
+const [open2, setOpen2] = useState(false);
+const [open3, setOpen3] = useState(false);
 
+const navigate = useNavigate();
+  const shoot = () => {
+    setOpen3(true)
+  }
+  const close = () => {
+    setOpen3(false)
+  }
 
-export default React.memo(function Card({ index, movieData, isLiked = false }) {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [isHovered, setIsHovered] = useState(false);
-  const [email, setEmail] = useState(undefined);
-
-  onAuthStateChanged(firebaseAuth, (currentUser) => {
-    if (currentUser) {
-      setEmail(currentUser.email);
-    } else navigate("/login");
-  });
-
-  const addToList = async () => {
-    try {
-      await axios.post("http://localhost:5000/api/user/add", {
-        email,
-        data: movieData,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const shoot2 = () => {
+    setOpen2(true)
+  }
+  const close2 = () => {
+    setOpen2(false)
+  }
 
   return (
-    <Container
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+    <Container>
+    <div className={`father ${ open3 ? 'father2' : ''}`}
+    onMouseEnter={shoot}
+    onMouseLeave={close}
     >
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
-        alt="card"
-        onClick={() => navigate(`/player?${movieData.filme}`)}
-      />
-
-      {isHovered && (
-        <div className="hover">
-          <div className="image-video-container">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
-              alt="card"
-              onClick={() => navigate(`/player?${movieData.filme}`)}
-            />
-            <video
-              src={movieData.trailer}
-              autoPlay={true}
-              loop
-              muted
-              onClick={() => navigate(`/player?${movieData.filme}`)}
-            />
+      {  <img
+            src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
+            alt="card"
+            onClick={shoot2}
+            className={`${ open2 ? 'normal ': 'hover ' } ${ open3 ? 'hover2' : ''}`} 
+            
+          />    }
+    
+       
+            
+            { open3 && <h5 className='cardTitle'>{movieData.name} </h5>}
+            { open3 ?   <div className='flexCard flex'><a  onClick={() => navigate(`/player?${movieData.filme}`)} ><FaPlay className='final2'/></a>
+            <a onClick={shoot2}><FaInfoCircle className='final'/></a>
+        
+            </div> :  ''}
+           
+              <div className={open2 ? 'open':'hide'}>
+      
+                <div className={`${ open2 ? 'showModal' : 'modal'}`} 
+                style={{ backgroundImage:`url(${movieData.cat == 'terror' ? Terror : ''} 
+                ${movieData.cat == 'antigos' ? Antigo : ''}
+                ${movieData.cat == 'Novo' ? New : ''}
+                ${movieData.cat == 'popular' ? New : ''}
+                )`}}
+                
+                >
+         <div className="modalInfo">
+          <a className="exit" onClick={close2}>X</a>
+       <h1>{movieData.name}</h1>
+         <h6><>{'Nota 00% (calculado em breve)'}<a>{movieData.cat}</a><text>TV - Filmes</text></></h6>
           </div>
-          <div className="info-container flex column">
-            <h3 className="name" onClick={() => navigate(`/player?${movieData.filme}`)}>
-              {movieData.name}
-            </h3>
-            <div className="icons flex j-between">
-              <div className="controls flex">
-                <IoPlayCircleSharp
-                  title="Play"
-                  onClick={() => navigate(`/player?${movieData.filme}`)}
-                />
-                <RiThumbUpFill title="Like" />
-                <RiThumbDownFill title="Dislike" />
-                {isLiked ? (
-                  <BsCheck
-                    title="Remove from List"
-                    onClick={() =>
-                      dispatch(
-                        removeMovieFromLiked({ movieId: movieData.id, email })
-                      )
-                    }
-                  />
-                ) : (
-                  <AiOutlinePlus title="Add to my list" onClick={addToList} />
-                )}
-              </div>
-              <div className="info">
-                <BiChevronDown title="More Info" />
-              </div>
-            </div>
-            <div className="genres flex">
-              <ul className="flex">
-                {movieData.genres.map((genre) => (
-                  <li>{genre}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <div className="infoM">
+            {movieData.desc}
         </div>
-      )}
+        <div className="flex">
+      
+              <button    onClick={() => navigate(`/player?${movieData.filme}`)} className="btnN flex j-center a-center sumir assistir" >
+              <h5>Assistir  <FaPlay className='faplay'/></h5>  
+              </button>
+              </div>
+           
+          </div>
+
+    </div>
+    </div>
     </Container>
-  );
-});
+  )
+}const Container = styled.div`
+.final{
+  opacity: 0.7;
+} .final:hover{
+  opacity: 1.0;
+}
+.final2{
 
-
-const Container = styled.div`
-display: inline-block;
-  width: 230px;
-  height: 130px;
-  cursor: pointer;
-  transition: 5.6s all;
-  position: relative;
+  opacity: 0.7;
+} .final2:hover{
+  color: rgba(250, 40, 40, 0.7);
  
 
+}
+
+
+
+
+h6 {
+  a{
+    margin-right: 10px;
+  }
+}
+
+.assistir{
+  background-color: rgba(250, 250, 250, 0.7);
+  padding-top: 4px;
+} .assistir:hover{
+  background-color: rgba(250, 200, 200, 0.7);
+}
+.faplay{
+  margin-top: -4px;
+  color: rgba(255, 70, 70, 0.7);
+}
+.infoM {
+  width: 48%;
+}
+
+.btnN {
+  margin-top: 20px;
+}
+
+
+video {
+  width: 300px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.3rem;
+  top: 0;
+  z-index: 5;
+  position: absolute;
+}
+
+
+
+
+
+.cardTitle {
+  margin-top: 5px;
+  
+}
+.flexCard {
+  font-size: 15px;
+  margin-top: -7px;
+
+}
+
+.masterC{
+
+  display: flex;
+
+}
+
+.masterH{
+  display: none;
+}
+
+
+.pai{
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.father{
+
+  cursor: pointer;
+margin: 7px;
+  
+}
+.father2{
+  background-color: rgba(50, 50, 50, 0.5);
+  padding-bottom: 20px;
+  border-radius: 20px;
+ 
+}
+.exit{
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  color: rgba(255, 70, 70, 0.9);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 30px;
+}
+h5{padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 15px;
+  cursor: pointer;
+  padding-right: 15px;
+.icon{
+  padding: 10px;
+}
+}
+
+
+.normal{
+  position: relative;
+  cursor: pointer;
+  height: 180px;
   img {
+    width: 40%;
+    height: 140px;
+    object-fit: cover;
+    cursor: pointer;
     border-radius: 0.3rem;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
-  }
-  .hover {
-    z-index: 99;
-    height: auto;
-    width: 20rem;
+    top: 0;
+    z-index: 4;
     position: absolute;
-    top: -5vh;
-    left: 0;
-    border-radius: 0.3rem;
-    box-shadow: rgba(0, 0, 0, 0.75) 0px 3px 10px;
-    background-color: #181818;
-    transition: 5.6s all;
-    .image-video-container {
-      position: relative;
-      height: 140px;
-      img {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 0.3rem;
-        top: 0;
-        z-index: 4;
-        position: absolute;
-      }
-      video {
-        width: 100%;
-        height: 140px;
-        object-fit: cover;
-        border-radius: 0.3rem;
-        top: 0;
-        z-index: 5;
-        position: absolute;
-      }
-    }
-    .info-container {
-      padding: 1rem;
-      gap: 0.5rem;
-    }
-    .icons {
-      .controls {
-        display: flex;
-        gap: 1rem;
-      }
-      svg {
-        font-size: 2rem;
-        cursor: pointer;
-        transition: 1.3s ease-in-out;
-        &:hover {
-          color: #b8b8b8;
-        }
-      }
-    }
-    .genres {
-      ul {
-        gap: 1rem;
-        li {
-          padding-right: 0.7rem;
-          &:first-of-type {
-            list-style-type: none;
-          }
-        }
-      }
-    }
+    transition-property: width;
+    transition-duration: 2s;
+    transition-timing-function: linear;
+    transition-delay: 1s;
   }
-`;
+}
+.hover{
+  position: relative;
+  transition-property: width;
+  transition-duration: 2s;
+  transition-timing-function: linear;
+  transition-delay: 1s;
+  height: 130px;
+  img {
+    width: 40%;
+    
+    height: 140px;
+    object-fit: cover;
+    border-radius: 15px;
+    top: 0;
+    z-index: 4;
+    position: absolute;
+  }
+} 
+
+
+.hover2{
+  position: relative;
+  height: 140px;
+  border-radius: 6px;
+  img {
+    width: 40%;
+    
+    height: 140px;
+    object-fit: cover;
+    border-radius: 0.3rem;
+    top: 0;
+    z-index: 4;
+    position: absolute;
+  }
+} 
+
+
+
+
+
+
+
+
+.open{
+  z-index: 99;
+  height: 60%;
+  width: 90%;
+
+  position: fixed;
+  left: 5%;
+  top: 20%;
+}
+.hide{
+  display: none;
+  z-index: 99999;
+}
+
+
+
+
+
+
+
+
+
+
+`

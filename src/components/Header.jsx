@@ -9,8 +9,8 @@ export default function Header(props) {
       <div className="logo">
         <img src={Logo} alt="logo" />
          </div>
-         <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
-            {props.login ? "Log In" : "Sign In"}</button>
+         <button className="sign" onClick={() => navigate(props.login ? "/login" : "/signup")}>
+            {props.login ? "Login" : "Cadastrar"}</button>
     </Container>
   )
 }
@@ -18,7 +18,8 @@ const Container = styled.div`
 padding: 0 4rem;
 .logo {
     img{
-        height: 5rem;
+      margin-top: 14px; 
+        height: 3rem;
     }
 }
 button {
@@ -31,5 +32,19 @@ button {
     font-weight: bolder;
     font-size: 1.05rem;
 
+}
+@media (max-width: 410px){ 
+  .logo{ img{height: 35px;
+  margin: 10px;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  } }
+  button{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 13px;
+  }
 }
 `;
