@@ -63,7 +63,8 @@ function Login() {
 
 const Container = styled.div`
 .bgbg{
-  max-height: 100vh;
+  width: 100%;
+  height: auto;
 }
   position: relative;
   .content {
@@ -71,8 +72,8 @@ const Container = styled.div`
     top: 0;
     left: 0;
 
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.5);
    
     .form-container {
@@ -106,8 +107,31 @@ const Container = styled.div`
     font-weight: bolder;
     font-size: 1.05rem;
   }
-  @media (max-width: 410px){ 
+  @media (max-width: 970px){
+    .bgbg{
+      height: 100vh;
+    }
 
+   }
+
+
+   @media (max-width: 800px){
+    .bgbg{
+      width: 140vw;
+      height: 90vh;
+    }
+
+   }
+
+
+
+
+
+  @media (max-width: 410px){ 
+    .bgbg{
+      width: 170vw;
+      height: 90vh;
+    }
     .botao {
      
  
@@ -119,6 +143,7 @@ const Container = styled.div`
       font-size: 14px;
     }
   }
+
 `;
 
 export default Login;
