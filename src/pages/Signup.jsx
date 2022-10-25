@@ -5,7 +5,7 @@ import { firebaseAuth } from "../utils/firebase-config";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import styled from "styled-components";
 import Header from '../components/Header';
-
+import background from "../assets/login.jpg";
 
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false);
@@ -40,9 +40,11 @@ if (currentUser) navigate("/");
 
     return  <Container showPassword={showPassword}>
       
-    <BackgroundImage />
+      <img src={background} className="bgbg" alt="background"/>
     <div className="content">
+      
     <Header login/>
+    
     <div className="body flex column a-center j-center">
     <div className="text flex column">
         <h1>Filmes Séries, Tv shows e mais</h1>
@@ -112,6 +114,10 @@ if (currentUser) navigate("/");
   }
 
   const Container = styled.div`
+  .bgbg{
+    width: 100%;
+    height: auto;
+  }
  .formM{display: none;}
   position: relative;
   .content {
@@ -119,8 +125,8 @@ if (currentUser) navigate("/");
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: column;
     grid-template-rows: 15vh 85vh;
     .body {
@@ -174,6 +180,24 @@ if (currentUser) navigate("/");
   }
 
 
+  @media (max-width: 970px){
+    .bgbg{
+      height: 100vh;
+    }
+
+   }
+
+
+   @media (max-width: 800px){
+    .bgbg{
+      width: 140vw;
+      height: 90vh;
+    }
+
+   }
+
+  
+
   @media (max-width: 750px){ 
    
     .form {
@@ -212,6 +236,20 @@ if (currentUser) navigate("/");
 
     }
   }
+
+
+
+  @media (max-width: 410px){ 
+    .bgbg{
+      width: 170vw;
+      height: 90vh;
+    }
+  }
+
+
+
+
+  
   @media (max-width: 375px){
     input {
       padding: 0.3rem;
