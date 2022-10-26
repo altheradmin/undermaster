@@ -9,6 +9,7 @@ import background from "../assets/login.jpg";
 
 export default function Signup() {
     const [showPassword,setShowPassword] = useState(false);
+    const [msgS, setMsgS] = useState("");
     const [formValues,setFormValues] = useState({
         email: "",
         password: "",
@@ -19,7 +20,7 @@ export default function Signup() {
         const { email, password} = formValues;
        await createUserWithEmailAndPassword(firebaseAuth, email, password);
       } catch (err) {
-        console.log(err);
+        setMsgS(err.code);
       }
 
     }
@@ -50,6 +51,12 @@ if (currentUser) navigate("/");
         <h1>Filmes Séries, Tv shows e mais</h1>
         <h4>Sem propagantas, totalmente gratuito.</h4>
         <h6>Insira um email e uma senha para cadastrar-se.</h6>
+       <h6 className="red">
+        {msgS == "auth/email-already-in-use" ? 'Email já cadastrado!' : ''}
+        {msgS == "auth/invalid-email" ? 'Email inválido' : ''}
+        {msgS == "auth/weak-password" ? 'A senha deve ter no mínimo 6 dígitos' : ''}
+
+       </h6>
         </div>
         <div className='formM'>
 
@@ -103,7 +110,7 @@ if (currentUser) navigate("/");
            })
            }
           />
-           
+        
         )}
         {!showPassword && <button className='botaoult' onClick={() => setShowPassword(true)}>cadastrar</button>}
     
@@ -114,6 +121,9 @@ if (currentUser) navigate("/");
   }
 
   const Container = styled.div`
+  .red{
+    color: red;
+  }
   .bgbg{
     width: 100%;
     height: auto;
