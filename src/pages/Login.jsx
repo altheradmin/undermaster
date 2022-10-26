@@ -57,6 +57,9 @@ function Login() {
           {msg == "auth/wrong-password" ? <div className="red">Senha Errada</div> : ''}  
           {msg == "auth/too-many-requests" ? <div className="red">Tentativas excedidas, tenta mais tarde.</div> : ''}  
           {msg == "auth/user-not-found" ? <div className="red">Email não cadastrado</div> : ''}  
+          {msg == "auth/invalid-email" ? <div className="red">Email inválido</div> : ''}  
+
+
             
         
           </div>
