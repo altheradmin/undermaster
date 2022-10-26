@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import UnderFlix from './pages/Underflix';
 import Player from './pages/Player';
 
+
 class App extends Component {
   render() {
     return (
@@ -19,5 +20,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
