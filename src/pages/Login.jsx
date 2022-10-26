@@ -13,13 +13,14 @@ import Background from "../assets/login.jpg";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
     } catch (error) {
-      console.log(error.code);
+      setMsg(error.code);
     }
   };
 
@@ -53,15 +54,22 @@ function Login() {
               />
               <button className="botao" onClick={handleLogin}>Logar</button>
             </div>
+          {msg == "auth/wrong-password" ? <div className="red">Senha Errada</div> : ''}  
+          {msg == "auth/too-many-requests" ? <div className="red">Tentativas excedidas, tenta mais tarde.</div> : ''}  
+          {msg == "auth/user-not-found" ? <div className="red">Email não cadastrado</div> : ''}  
+            
+        
           </div>
         </div>
       </div>
       <Footer/>
+      
     </Container>
   );
 }
 
 const Container = styled.div`
+.red{color: red}
 .bgbg{
   width: 100%;
   height: auto;
