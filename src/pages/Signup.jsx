@@ -52,7 +52,7 @@ if (currentUser) navigate("/");
         <h4>Sem propagantas, totalmente gratuito.</h4>
         <h6>Insira um email e uma senha para cadastrar-se.</h6>
        <h6 className="red">
-        {msgS == "auth/email-already-in-use" ? 'Email já cadastrado!' : ''}
+        {msgS == "auth/email-already-in-use" ? 'Email já cadastrado' : ''}
         {msgS == "auth/invalid-email" ? 'Email inválido' : ''}
         {msgS == "auth/weak-password" ? 'A senha deve ter no mínimo 6 dígitos' : ''}
 
