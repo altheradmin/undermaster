@@ -19,7 +19,7 @@ export default function Player() {
           {console.log('window => ',window.location.href)}
         
         </div>
-        <video src={`https://firebasestorage.googleapis.com/v0/b/underflix-8485f.appspot.com/o/${window.location.href.slice(38)}`} autoPlay loop controls muted />
+        <video src={`https://firebasestorage.googleapis.com/v0/b/underflix-8485f.appspot.com/o/${window.location.href.slice(38)}`} autoPlay loop controls />
       </div>
     </Container>
   )
