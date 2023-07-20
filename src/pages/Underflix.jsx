@@ -35,7 +35,9 @@ export default function Underflix() {
       dispatch(fetchMovies({ type: "all" }));
       onAuthStateChanged(firebaseAuth, (currentUser) => {
         if (currentUser) setEma(currentUser.email)
-         });
+         console.log(currentUser.email);
+      
+      });
     
   }, []);
 
