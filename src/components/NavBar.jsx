@@ -31,9 +31,7 @@ export default function NavBar({ isScrolled, currentEmail }) {
       setShowMenu(false);
     }
     const [showCon, setShowCon] = useState('aaaa');
-    onAuthStateChanged(firebaseAuth, (currentUser) => {
-        if (!currentUser) {navigate("/login")};
-         });
+
       
 
          const [showContato, setShowContato] = useState(false);
