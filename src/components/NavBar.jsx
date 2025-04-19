@@ -119,11 +119,11 @@ export default function NavBar({ isScrolled, currentEmail }) {
 <h1>{'Ajuda'}</h1>
 <h6>{'Responderei pelo email cadastrado:'} <div className='blurr'>{currentEmail}</div></h6>
 <div className="texto">
-<h7 >{''Me manda nas redes sociais, não to acessando o admin daqui :) ''}</h7>
+<h7 >{'Me manda nas redes sociais, não to acessando o admin daqui :) '}</h7>
 </div>
 </div>
 <div className="infoM">
- <textarea onChange={(e) => setPedido(e.target.value)} className="text"> </textarea>
+
 </div>
 <div className="flex">
 
