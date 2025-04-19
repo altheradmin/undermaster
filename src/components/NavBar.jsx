@@ -93,9 +93,7 @@ export default function NavBar({ isScrolled, currentEmail }) {
 </div>
 <div className="flex">
 
-    <button   onClick={master} className="btnN flex j-center a-center sumir assistir" >
-    <h5>Enviar <FaPlay className='faplay'/></h5>  
-    </button>
+  
     </div>{<div className='status'>{sucess}</div>}
  
 </div>
@@ -127,9 +125,7 @@ export default function NavBar({ isScrolled, currentEmail }) {
 </div>
 <div className="flex">
 
-    <button   onClick={master} className="btnN flex j-center a-center sumir assistir" >
-    <h5>Enviar <FaPlay className='faplay'/></h5>  
-    </button>
+  
     </div>{<div className='status'>{sucess}</div>}
  
 </div>
