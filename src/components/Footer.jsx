@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function Footer() {
   function alerta(params) {
-    alert('Essas funcionalidades serão adicionadas quando houver necessidade! Site ainda não tem muitos usuários')
+    alert('Essas funcionalidades serão adicionadas quando houver necessidade! Site ainda não tem muitos usuários :)')
   }
   return (
     <Container>
